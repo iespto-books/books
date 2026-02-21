@@ -1,29 +1,49 @@
-name: Documentation
+name: Deploy All Books
+
 on:
   push:
-    branches:
-      - master
-      - main
+    branches: [main, master]
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/configure-pages@v5
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: pip install zensical
-      - run: zensical build --clean
+
+      - name: Install Zensical
+        run: pip install zensical
+
+      - name: Build all books
+        run: |
+          mkdir combined
+
+          for dir in */ ; do
+            if [ -f "$dir/zensical.toml" ]; then
+              echo "Building $dir"
+              cd "$dir"
+              zensical build --clean
+              cd ..
+              mkdir -p combined/${dir%/}
+              cp -r "$dir/site/"* combined/${dir%/}/
+            fi
+          done
+
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: combined
+
       - uses: actions/deploy-pages@v4
         id: deployment
