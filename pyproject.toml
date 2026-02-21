@@ -1,7 +1,7 @@
 [project]
-name = "js-book"
+name = "books"
 version = "0.1.0"
-description = "Add your description here"
+description = "Libros de teoría para módulos de FP del IES Puerto de la Cruz - Telesforo Bravo"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []

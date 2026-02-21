@@ -65,19 +65,60 @@ console.error('¡Error!');
 ## Expresiones y operadores *(≈ 8 artículos)*
 
 ### Operadores de asignación *(4 min)*
+
+Los operadores de asignación combinan una operación con la asignación de un valor a una variable.
+
+| Operador | Significado |
+|----------|--------------|
+| `=` | Asignación simple |
+| `+=` | Suma y asigna |
+| `-=` | Resta y asigna |
+| `*=` | Multiplica y asigna |
+| `/=` | Divide y asigna |
+| `%=` | Módulo y asigna |
+| `**=` | Exponenciación y asigna |
+
+Ejemplo:
 ```js
-let a = 10;
-a += 5; // a = 15
-a **= 2; // a = 225
+let a = 5;
+a += 3; // a = 8
 ```
 
 ### Operadores aritméticos *(2 min)*
-`+ - * / % ** ++ --`
+
+Los operadores aritméticos permiten realizar cálculos numéricos básicos.
+
+| Operador | Nombre | Ejemplo |
+|----------|--------|---------|
+| `+` | Suma | `5 + 3 // 8` |
+| `-` | Resta | `5 - 2 // 3` |
+| `*` | Multiplicación | `4 * 2 // 8` |
+| `/` | División | `10 / 2 // 5` |
+| `%` | Módulo (resto) | `10 % 3 // 1` |
+| `**` | Exponenciación | `2 ** 3 // 8` |
+| `++` | Incremento | `let i = 0; i++; // i = 1` |
+| `--` | Decremento | `let i = 5; i--; // i = 4` |
+
+> Cada operador tiene su precedencia (p.ej., `**` > `*`/`/` > `+`/`-`).
+
 
 ### Operadores de comparación *(3 min)*
+
+Los operadores de comparación devuelven un **booleano** (`true` o `false`). Se usan para decidir flujos de control.
+
+| Operador | Significado |
+|----------|-------------|
+| `==` | Igualdad (con coerción) |
+| `===` | Igualdad estricta |
+| `!=` | Desigualdad (con coerción) |
+| `!==` | Desigualdad estricta |
+| `<` `>` `<=` `>=` | Comparación numérica |
+
+Ejemplo:
+
 ```js
-0 == false   // true (coerción)
-0 === false // false (estricto)
+5 == '5'   // true (coerción)
+5 === '5' // false (tipo diferente)
 ```
 
 ### Operadores lógicos *(3 min)*
