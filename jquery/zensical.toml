@@ -1,4 +1,6 @@
 [project]
 site_name = "Aprende JQuery"
-site_description = "Aprende JQuery
+site_description = "Aprende JQuery"
+
+[project.theme]
 language = "es"

@@ -1,4 +1,6 @@
 [project]
 site_name = "Aprende Typescript"
 site_description = "Aprende Typescript"
+
+[project.theme]
 language = "es"
