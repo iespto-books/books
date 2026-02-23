@@ -34,6 +34,8 @@ Como mínimo en `zensical.toml` estamos generando:
 [project]
 site_name = "Nombre del libro"
 site_description = "Descripción"
+
+[project.theme]
 language = "es"
 ```
 

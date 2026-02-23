@@ -1,0 +1,6 @@
+[project]
+site_name = "Aprende GIT"
+site_description = "Apuntes para aprender control de versiones usando GIT"
+
+[project.theme]
+language = "es"
