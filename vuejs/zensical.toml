@@ -1,9 +1,11 @@
 [project]
 site_name = "Aprende VueJS"
 site_description = "Aprende VueJS"
-language = "es"
 nav = [
   {"Introducción" = "index.md"},
   {"Usando Vue" = "usandoVue.md"},
   {"Creando proyecto Vue" = "creandoProyecto.md"},
 ]
+
+[project.theme]
+language = "es"
