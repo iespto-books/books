@@ -1,6 +1,6 @@
-# Usando Vue
+# Integrando Vue
 
-## Desde CDN
+## 1. Desde CDN
 
 Puedes usar Vue directamente desde un CDN mediante una etiqueta `script`:
 
@@ -10,11 +10,11 @@ Puedes usar Vue directamente desde un CDN mediante una etiqueta `script`:
 
 En este ejemplo se usa `unpkg`, pero también puedes utilizar otros CDN que publiquen paquetes de npm (por ejemplo, `jsdelivr` o `cdnjs`). También puedes descargar el archivo y servirlo localmente.
 
-Cuando se utiliza Vue desde un CDN no hay paso de compilación. Esto simplifica la configuración y encaja bien para mejorar HTML estático o integrarlo con un backend existente. Como contrapartida, no podrás usar sintaxis de Componentes de Archivo Unico (SFC).
+Cuando se utiliza Vue desde un CDN no hay paso de compilación. Esto simplifica la configuración y encaja bien para mejorar HTML estático o integrarlo con un backend existente. Como contrapartida, no podrás usar sintaxis de Componentes de Archivo único (SFC).
 
-### Usando la compilacion global
+### Usando la compilación global
 
-El enlace anterior carga la compilacion global de Vue, donde las APIs de alto nivel quedan disponibles como propiedades del objeto global `Vue`.
+El enlace anterior carga la compilación global de Vue, donde las APIs de alto nivel quedan disponibles como propiedades del objeto global `Vue`.
 
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -33,9 +33,9 @@ El enlace anterior carga la compilacion global de Vue, donde las APIs de alto ni
 </script>
 ```
 
-### Usando el modulo de construccion ES
+### Usando el modulo de construcción ES
 
-La mayoria de navegadores modernos soportan modulos ES de forma nativa, por lo que Vue puede cargarse tambien como modulo.
+La mayoría de navegadores modernos soportan módulos ES de forma nativa, por lo que Vue puede cargarse también como módulo.
 
 ```html
 <script type="importmap">
@@ -62,9 +62,9 @@ La mayoria de navegadores modernos soportan modulos ES de forma nativa, por lo q
 
 Con `script type="importmap"` le indicas al navegador desde donde resolver las importaciones.
 
-## Aplicacion de Vue
+## 2. Usando npm para crear una aplicación de Vue
 
-Asegurate de tener instalada una version actualizada de Node.js y situarte en el directorio donde quieras crear el proyecto.
+Asegúrate de tener instalada una versión actualizada de Node.js y situarte en el directorio donde quieras crear el proyecto.
 
 ```bash
 npm create vue@latest
@@ -76,32 +76,32 @@ Una vez creado el proyecto, sigue las instrucciones del asistente para instalar 
 
 Los componentes de ejemplo generados por defecto usan `Composition API` y `script setup`.
 
-## Soporte para Visual Studio Code
+## Pluggins de Vue para Visual Studio Code
 
-Configuracion recomendada de extensiones para VS Code:
+Configuración recomendada de extensiones para VS Code:
 
 - `Vue (Official)` - `vuejs.org`
 - `Vue 3 Snippets` - `hollowtree`
 - `Vue VSCode Snippets` - `sarah.drasner`
 
-## Componentes de archivo unico (SFC)
+## Componentes de archivo único (SFC)
 
-Un Single File Component (SFC) es un archivo `.vue` que agrupa tres bloques:
+Un Single File Component (SFC o en español Componente de archivo único) es un archivo `.vue` que agrupa tres bloques:
 
 - `template`: contenido HTML
 - `script`: logica del componente
 - `style`: estilos CSS
 
-Este formato facilita el desarrollo en proyectos grandes porque mejora la organizacion y la mantenibilidad del codigo.
+Este formato facilita el desarrollo en proyectos grandes porque mejora la organización y la mantenibilidad del código.
 
 Ventajas practicas:
 
-- Mejor gestion de plantillas y componentes a medida que crece el proyecto.
+- Mejor gestión de plantillas y componentes a medida que crece el proyecto.
 - Flujo de desarrollo moderno con servidor local.
-- Actualizacion inmediata al guardar cambios (HMR), sin recargar manualmente.
+- Actualización inmediata al guardar cambios (HMR), sin recargar manualmente.
 - Es el enfoque habitual en aplicaciones Vue reales.
 
-Los SFC no se ejecutan directamente en el navegador: necesitas un entorno de compilacion que transforme los `.vue` en recursos que el navegador pueda interpretar.
+Los SFC no se ejecutan directamente en el navegador: necesitas un entorno de compilación que transforme los `.vue` en recursos que el navegador pueda interpretar.
 
 ### Proyecto Composition API sin formato SFC
 
@@ -146,7 +146,7 @@ Este ejemplo se puede ejecutar directamente en un archivo HTML con Vue 3 cargado
 
 Este ejemplo usa un componente `.vue` con `template`, `script setup` y `style`.
 
-Para que funcione, debes usar un servidor de desarrollo (por ejemplo, Vite). No basta con abrir `index.html` directamente, porque necesitas compilacion de `.vue` y resolucion de modulos.
+Para que funcione, debes usar un servidor de desarrollo (por ejemplo, Vite). No basta con abrir `index.html` directamente, porque necesitas compilación de `.vue` y resolución de módulos.
 
 ```bash
 npm create vite@latest my-vue-app --template vue
@@ -155,7 +155,7 @@ npm install
 npm run dev
 ```
 
-Estructura basica:
+Estructura básica:
 
 ```text
 /project-root

@@ -2,6 +2,8 @@
 
 Guia basica para crear y usar stores con Pinia en una aplicacion Vue.
 
+Referencia oficial: [Pinia Documentation](https://pinia.vuejs.org/).
+
 ## Introduccion
 
 Pinia es la libreria oficial de gestion de estado para Vue.
@@ -9,6 +11,8 @@ Pinia es la libreria oficial de gestion de estado para Vue.
 - Permite compartir estado entre componentes.
 - Centraliza logica de negocio.
 - Funciona muy bien con Composition API y TypeScript.
+
+Referencia oficial: [Why Pinia?](https://pinia.vuejs.org/introduction.html).
 
 ## Instalacion
 
@@ -18,7 +22,11 @@ Si no se instalo durante la creacion del proyecto:
 npm install pinia
 ```
 
+Referencia oficial: [Getting Started](https://pinia.vuejs.org/getting-started.html).
+
 ## Registrar Pinia en `main.js`
+
+Referencia oficial: [Installation](https://pinia.vuejs.org/getting-started.html#installation).
 
 ```js
 import { createApp } from 'vue'
@@ -42,11 +50,15 @@ En Pinia, de forma general:
 - Getters: valores derivados.
 - Actions: funciones que modifican el estado.
 
+Referencia oficial: [Core Concepts](https://pinia.vuejs.org/core-concepts/).
+
 Usalo para datos que se comparten en muchas partes de la app (por ejemplo, usuario autenticado o carrito).
 
 ## Definir un store con Composition API
 
 Archivo: `src/stores/counter.js`
+
+Referencia oficial: [Defining a Store (Setup Stores)](https://pinia.vuejs.org/core-concepts/#defining-a-store).
 
 ```js
 import { defineStore } from 'pinia'
@@ -76,6 +88,8 @@ Resumen:
 - `function` -> actions
 
 ## Definir el store en TypeScript
+
+Referencia oficial: [TypeScript](https://pinia.vuejs.org/core-concepts/state.html#typescript).
 
 Archivo: `src/stores/counter.ts`
 
@@ -109,6 +123,8 @@ Si usas `<script setup>`, recuerda `lang="ts"` en los componentes TypeScript.
 
 ## Uso del store en un componente padre
 
+Referencia oficial: [Using the Store](https://pinia.vuejs.org/core-concepts/outside-component-usage.html).
+
 Archivo: `src/components/ParentComponent.vue`
 
 ```vue
@@ -133,6 +149,8 @@ const counter = useCounterStore()
 
 ## Uso del store en un componente hijo
 
+Referencia oficial: [State and Getters usage](https://pinia.vuejs.org/core-concepts/state.html).
+
 Archivo: `src/components/ChildComponent.vue`
 
 ```vue
@@ -154,6 +172,8 @@ const counter = useCounterStore()
 ## Compartir store entre ramas distintas
 
 Aunque los componentes no esten en la misma rama directa, pueden leer y modificar el mismo store.
+
+Referencia oficial: [Stores outside components](https://pinia.vuejs.org/core-concepts/outside-component-usage.html).
 
 ```text
 App.vue
@@ -204,3 +224,13 @@ const counter = useCounterStore()
 - Usa store solo para estado compartido real.
 - Mantener estado local en componente cuando no se comparte mejora claridad.
 - Evita reactividad innecesaria para reducir renders y mantener rendimiento.
+
+## Referencias oficiales
+
+- [Pinia Documentation](https://pinia.vuejs.org/)
+- [Getting Started](https://pinia.vuejs.org/getting-started.html)
+- [Core Concepts](https://pinia.vuejs.org/core-concepts/)
+- [Defining Stores](https://pinia.vuejs.org/core-concepts/#defining-a-store)
+- [State](https://pinia.vuejs.org/core-concepts/state.html)
+- [Getters](https://pinia.vuejs.org/core-concepts/getters.html)
+- [Actions](https://pinia.vuejs.org/core-concepts/actions.html)

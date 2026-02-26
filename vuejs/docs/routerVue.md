@@ -2,19 +2,25 @@
 
 Guia basica para enrutar aplicaciones Vue SPA (Single Page Application).
 
+Referencia oficial: [Vue Router Guide](https://router.vuejs.org/guide/).
+
 ## 1. Introduccion
 
 Vue Router es la libreria oficial de Vue para manejar navegacion entre vistas sin recargar la pagina.
 
+Referencia oficial: [What is Vue Router?](https://router.vuejs.org/).
+
 ## 2. Instalacion
 
-En muchos proyectos con Vite ya viene integrado. Si no:
+En proyectos creados con plantillas Vue, puede agregarse durante el scaffolding. Si no esta instalado:
 
 ```bash
 npm install vue-router
 ```
 
 ## 3. Configuracion basica
+
+Referencia oficial: [Creating the Router Instance](https://router.vuejs.org/guide/#creating-the-router-instance).
 
 Archivo `src/router.js`:
 
@@ -48,6 +54,8 @@ createApp(App).use(router).mount('#app')
 
 ## 4. Uso de `<router-link>` y `<router-view>`
 
+Referencia oficial: [Essentials](https://router.vuejs.org/guide/essentials/navigation.html).
+
 ### Navegacion con `<router-link>`
 
 ```vue
@@ -72,6 +80,8 @@ createApp(App).use(router).mount('#app')
 
 ## 5. Rutas con parametros
 
+Referencia oficial: [Dynamic Route Matching](https://router.vuejs.org/guide/essentials/dynamic-matching.html).
+
 Definicion de ruta dinamica:
 
 ```js
@@ -90,12 +100,16 @@ Acceso al parametro en componente:
 
 ## 6. Redirecciones y rutas no encontradas
 
+Referencia oficial: [Redirect and Alias](https://router.vuejs.org/guide/essentials/redirect-and-alias.html), [Dynamic matching catch-all](https://router.vuejs.org/guide/essentials/dynamic-matching.html).
+
 ```js
 { path: '/home', redirect: '/' }
 { path: '/:pathMatch(.*)*', component: NotFound }
 ```
 
 ## 7. Anidacion de rutas
+
+Referencia oficial: [Nested Routes](https://router.vuejs.org/guide/essentials/nested-routes.html).
 
 Configuracion:
 
@@ -127,6 +141,8 @@ Vista anidada:
 
 ## 8. Proteccion de rutas (Route Guards)
 
+Referencia oficial: [Navigation Guards](https://router.vuejs.org/guide/advanced/navigation-guards.html).
+
 Guardia global:
 
 ```js
@@ -140,6 +156,8 @@ router.beforeEach((to, from, next) => {
 ```
 
 ## 9. Meta fields
+
+Referencia oficial: [Route Meta Fields](https://router.vuejs.org/guide/advanced/meta.html).
 
 Puedes agregar metadata a las rutas para reglas de acceso u otra logica:
 
@@ -158,6 +176,8 @@ router.beforeEach((to, from, next) => {
 ```
 
 ## 10. Transiciones entre rutas
+
+Referencia oficial: [Transitions](https://router.vuejs.org/guide/advanced/transitions.html).
 
 ```vue
 <template>
@@ -181,6 +201,8 @@ router.beforeEach((to, from, next) => {
 
 ## 11. Rutas dinamicas avanzadas con `props`
 
+Referencia oficial: [Passing Props to Route Components](https://router.vuejs.org/guide/essentials/passing-props.html).
+
 Definicion de ruta pasando parametros como props:
 
 ```js
@@ -200,3 +222,10 @@ Componente `UserProfile`:
 defineProps(['id'])
 </script>
 ```
+
+## Referencias oficiales
+
+- [Vue Router Documentation](https://router.vuejs.org/guide/)
+- [Vue Router API](https://router.vuejs.org/api/)
+- [Programmatic Navigation](https://router.vuejs.org/guide/essentials/navigation.html)
+- [Navigation Guards](https://router.vuejs.org/guide/advanced/navigation-guards.html)

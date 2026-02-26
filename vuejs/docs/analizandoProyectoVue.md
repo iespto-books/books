@@ -1,40 +1,42 @@
-# Analizando la estructura de un proyecto
-# Vite + Vue + JS
+# Analizando la estructura de un proyecto Vue
 
-Guia para entender la organizacion basica de un proyecto Vue y el papel de sus archivos principales.
+Guía para entender la organización básica de un proyecto Vue y el papel de sus archivos principales.
 
 ## Estructura de carpetas
 
+- `\` (raíz del proyecto): `index.html`
 - `node_modules`: dependencias del proyecto.
-- `cypress`: configuracion y pruebas end-to-end en frontend.
-- `public`: recursos publicos como `index.html` y `favicon`.
-- `src`: codigo fuente principal de la aplicacion.
-- `src/router`: definicion de rutas (URL -> componente).
-- `src/assets`: imagenes, documentos y otros recursos.
+- `cypress`: configuración y pruebas end-to-end en frontend.
+- `public`: recursos públicos como `favicon`.
+- `src`: código fuente principal de la aplicacion.
+- `src/router`: definición de rutas (URL -> componente).
+- `src/assets`: imágenes, documentos y otros recursos.
 - `src/components`: componentes reutilizables.
-- `src/App.vue`: componente raiz de la app.
+- `src/App.vue`: componente raíz de la app.
 - `src/main.js`: punto de entrada principal.
-- Archivos de configuracion en raiz: `.gitignore`, `package.json`, `jsconfig.json`, etc.
+- Archivos de configuración en raíz: `.gitignore`, `package.json`, `jsconfig.json`, etc.
+
+Las carpetas `cypress`, `src/router` o `Pinia` aparecerán si se seleccionan al crear el proyecto.
 
 ## 1. Entrada al proyecto: `index.html`
 
-`index.html` es el archivo inicial que carga la aplicacion.
+`index.html` es el archivo inicial que carga la aplicación.
 
 - En el `body` se encuentra el contenedor donde Vue monta la app.
-- Tambien carga el script principal que apunta a `src/main.js`.
+- También carga el script principal que apunta a `src/main.js`.
 
 ## 2. El fichero `main.js`
 
-`main.js` arranca la aplicacion Vue.
+`main.js` arranca la aplicación Vue.
 
 Funciones principales:
 
-- Importar Vue y el componente raiz `App.vue`.
+- Importar Vue y el componente raíz `App.vue`.
 - Importar estilos globales.
 - Registrar plugins como Router y Pinia.
 - Montar la app en el elemento con id `app`.
 
-Ejemplo tipico:
+Ejemplo típico:
 
 ```js
 import { createApp } from 'vue'
@@ -50,10 +52,10 @@ app.mount('#app')
 
 ## 3. El fichero `App.vue`
 
-`App.vue` es el componente raiz y sigue el formato SFC (Single File Component):
+`App.vue` es el componente raíz y sigue el formato SFC (Single File Component):
 
 - `<template>`: estructura visual.
-- `<script>` o `<script setup>`: logica del componente.
+- `<script>` o `<script setup>`: lógica del componente.
 - `<style>`: estilos del componente.
 
 ### 3.1 Template de `App.vue`
@@ -93,7 +95,7 @@ import ButtonAutoCount from './components/ButtonAutoCount.vue'
 
 ## 4. El componente `ButtonAutoCount.vue`
 
-Este componente tambien sigue la estructura SFC.
+Este componente también sigue la estructura SFC.
 
 ### 4.1 Script del componente
 
@@ -125,10 +127,10 @@ Notas importantes:
 
 Elementos clave:
 
-- `data-test="btn-auto-count"`: ayuda a localizar el boton en pruebas.
+- `data-test="btn-auto-count"`: ayuda a localizar el botón en pruebas.
 - `@click="count++"`: escucha click y aumenta el contador.
-- `{{ count }}`: interpolacion para mostrar el valor reactivo.
+- `{{ count }}`: interpolación para mostrar el valor reactivo.
 
 ## Resumen
 
-La app Vue arranca en `index.html` y `main.js`, usa `App.vue` como raiz y se compone de componentes en `src/components`. Con `ref` y eventos como `@click`, la interfaz se actualiza de forma reactiva y sencilla.
+La app Vue arranca en `index.html` y `main.js`, usa `App.vue` como raíz y se compone de componentes en `src/components`. Con `ref` y eventos como `@click`, la interfaz se actualiza de forma reactiva y sencilla.

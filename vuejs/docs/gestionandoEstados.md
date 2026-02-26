@@ -74,6 +74,9 @@ Uso directo en template:
 - Trabajar con objetos o arrays reactivos.
 - Mantener estructuras de datos mas naturales en el codigo.
 
+### Limitaciones
+
+
 ### Ejemplo practico
 
 ```vue
