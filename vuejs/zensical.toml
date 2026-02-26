@@ -5,6 +5,11 @@ nav = [
   {"Introducción" = "index.md"},
   {"Usando Vue" = "usandoVue.md"},
   {"Creando proyecto Vue" = "creandoProyecto.md"},
+  {"Analizando estructura de un proyecto Vue" = "analizandoProyectoVue.md"},
+  {"Gestionando estados" = "gestionandoEstados.md"},
+  {"Props y Emmits" = "propsEmmits.md"},
+  {"Router Vue" = "routerVue.md"},
+  {"Pinia" = "pinia.md"},
 ]
 
 [project.theme]
