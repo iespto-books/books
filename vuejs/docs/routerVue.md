@@ -1,182 +1,202 @@
-Vue Router
-Índice
-0. Introducción......................................................................................................................................2
-1. Instalación.........................................................................................................................................2
-2. Configuración básica....................................................................................................................... .2
-3. Uso de `<router-link>` y `<router-view>`....................................................................................... .3
-Navegación con `<router-link>`..................................................................................................... .3
-Mostrar contenido dinámico con `<router-view>`...........................................................................3
-4. Rutas con parámetros...................................................................................................................... .3
-5. Redirecciones y rutas no encontradas...............................................................................................4
-6. Anidación de rutas........................................................................................................................... .4
-7. Protección de rutas (Route Guards)..................................................................................................4
-8. Meta fields....................................................................................................................................... .5
-9. Transiciones entre rutas................................................................................................................... .5
-10. Rutas dinámicas avanzadas........................................................................................................... .5
+# Vue Router
 
-1
+Guia basica para enrutar aplicaciones Vue SPA (Single Page Application).
 
+## 1. Introduccion
 
-0. Introducción
-Vue Router es la biblioteca oficial de Vue.js para manejar el enrutamiento en aplicaciones
-SPA (Single Page Application). Permite a los desarrolladores definir rutas y asociarlas con
-componentes para crear experiencias de usuario dinámicas y fluidas.
+Vue Router es la libreria oficial de Vue para manejar navegacion entre vistas sin recargar la pagina.
 
-1. Instalación
-Si estás usando un proyecto con Vite o Vue CLI, Vue Router generalmente está incluido. Si no,
-instálalo con npm:
+## 2. Instalacion
+
+En muchos proyectos con Vite ya viene integrado. Si no:
+
+```bash
 npm install vue-router
+```
 
-2. Configuración básica
-Configuración de un archivo `router.js`:
-// src/router.js
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from './components/Home.vue';
-import About from './components/About.vue';
+## 3. Configuracion basica
+
+Archivo `src/router.js`:
+
+```js
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from './components/Home.vue'
+import About from './components/About.vue'
+
 const routes = [
-{ path: '/', component: Home },
-{ path: '/about', component: About },
-];
+  { path: '/', component: Home },
+  { path: '/about', component: About },
+]
+
 const router = createRouter({
-history: createWebHistory(),
-routes,
-});
-export default router;
-Importar el enrutador en `main.js`:
-// src/main.js
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-createApp(App).use(router).mount('#app');
+  history: createWebHistory(),
+  routes,
+})
 
-2
+export default router
+```
 
+Archivo `src/main.js`:
 
-3. Uso de `<router-link>` y `<router-view>`
-Navegación con `<router-link>`
-Se utiliza para cambiar entre rutas sin recargar la página.
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+createApp(App).use(router).mount('#app')
+```
+
+## 4. Uso de `<router-link>` y `<router-view>`
+
+### Navegacion con `<router-link>`
+
+```vue
 <template>
-<nav>
-<router-link to="/">Home</router-link>
-<router-link to="/about">About</router-link>
-</nav>
+  <nav>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+  </nav>
 </template>
+```
 
-Mostrar contenido dinámico con `<router-view>`
-Coloca `<router-view>` donde deseas renderizar los componentes según la ruta activa.
+### Render dinamico con `<router-view>`
+
+```vue
 <template>
-<div>
-<Navbar />
-<router-view />
-</div>
+  <div>
+    <Navbar />
+    <router-view />
+  </div>
 </template>
+```
 
-4. Rutas con parámetros
-Se pueden pasar parámetros dinámicos a través de la URL.
-Configurar rutas con parámetros:
+## 5. Rutas con parametros
+
+Definicion de ruta dinamica:
+
+```js
 const routes = [
-{ path: '/user/:id', component: UserProfile },
-];
-Acceder a parámetros en el componente:
+  { path: '/user/:id', component: UserProfile },
+]
+```
+
+Acceso al parametro en componente:
+
+```vue
 <template>
-<div>
-<h1>Usuario ID: {{ $route.params.id }}</h1>
-</div>
+  <h1>Usuario ID: {{ $route.params.id }}</h1>
 </template>
+```
 
-3
+## 6. Redirecciones y rutas no encontradas
 
-
-5. Redirecciones y rutas no encontradas
-Redirección:
+```js
 { path: '/home', redirect: '/' }
-Rutas no encontradas (`404`):
 { path: '/:pathMatch(.*)*', component: NotFound }
+```
 
-6. Anidación de rutas
-Permite crear subrutas dentro de componentes.
-Configuración de rutas anidadas:
+## 7. Anidacion de rutas
+
+Configuracion:
+
+```js
 const routes = [
-{
-path: '/dashboard',
-component: Dashboard,
-children: [
-{ path: 'stats', component: Stats },
-{ path: 'settings', component: Settings },
-], }, ];
-Uso de `<router-view>` anidado:
+  {
+    path: '/dashboard',
+    component: Dashboard,
+    children: [
+      { path: 'stats', component: Stats },
+      { path: 'settings', component: Settings },
+    ],
+  },
+]
+```
+
+Vista anidada:
+
+```vue
 <template>
-<div>
-<h1>Dashboard</h1>
-<router-link to="/dashboard/stats">Stats</router-link>
-<router-link to="/dashboard/settings">Settings</router-link>
-<router-view />
-</div>
+  <div>
+    <h1>Dashboard</h1>
+    <router-link to="/dashboard/stats">Stats</router-link>
+    <router-link to="/dashboard/settings">Settings</router-link>
+    <router-view />
+  </div>
+</template>
+```
+
+## 8. Proteccion de rutas (Route Guards)
+
+Guardia global:
+
+```js
+router.beforeEach((to, from, next) => {
+  if (to.path === '/protected' && !isLoggedIn()) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+```
+
+## 9. Meta fields
+
+Puedes agregar metadata a las rutas para reglas de acceso u otra logica:
+
+```js
+const routes = [
+  { path: '/admin', component: Admin, meta: { requiresAuth: true } },
+]
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !isLoggedIn()) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+```
+
+## 10. Transiciones entre rutas
+
+```vue
+<template>
+  <transition name="fade">
+    <router-view />
+  </transition>
 </template>
 
-7. Protección de rutas (Route Guards)
-Se pueden usar para restringir el acceso a rutas específicas.
-Ejemplo de guardia global:
-router.beforeEach((to, from, next) => {
-if (to.path === '/protected' && !isLoggedIn()) {
-next('/login');
-} else {
-next();
-}
-});
-4
-
-
-8. Meta fields
-Las rutas pueden incluir campos personalizados para añadir lógica adicional.
-Ejemplo con meta:
-const routes = [
-{ path: '/admin', component: Admin, meta: { requiresAuth: true } },
-];
-router.beforeEach((to, from, next) => {
-if (to.meta.requiresAuth && !isLoggedIn()) {
-next('/login');
-} else {
-next();
-}
-});
-
-9. Transiciones entre rutas
-Se pueden usar animaciones CSS para transiciones.
-Ejemplo con `transition`:
-<template>
-<transition name="fade">
-<router-view />
-</transition>
-</template>
 <style>
-.fade-enter-active, .fade-leave-active {
-transition: opacity 0.5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
-opacity: 0;
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
+```
 
-10. Rutas dinámicas avanzadas
-Renderización condicional con `props`:
+## 11. Rutas dinamicas avanzadas con `props`
+
+Definicion de ruta pasando parametros como props:
+
+```js
 const routes = [
-{ path: '/user/:id', component: UserProfile, props: true },
-];
-
-5
-
+  { path: '/user/:id', component: UserProfile, props: true },
+]
+```
 
 Componente `UserProfile`:
+
+```vue
 <template>
-<div>
-<h1>Usuario ID: {{ id }}</h1>
-</div>
+  <h1>Usuario ID: {{ id }}</h1>
 </template>
+
 <script setup>
-defineProps(['id']);
+defineProps(['id'])
 </script>
-
-6
-
-
+```

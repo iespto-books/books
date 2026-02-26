@@ -1,128 +1,134 @@
-Analizando la estructura del proyecto Vue+Vite+JS
-Índice
-Estructura de carpetas	1
-1.- Entrada al proyecto: index.html	2
-2.- El fichero main.js	2
-3.- El fichero App.vue	2
-3.1.- Template de App.vue	3
-3.2.- Script de App.vue	3
-3.3.- Style de App.vue	3
-4.- El componente ButtonAutoCount.vue	3
-4.1.- Script del componente	4
-4.2.- Template del componente	4
-Resumen	5
+# Analizando la estructura de un proyecto
+# Vite + Vue + JS
 
-Estructura de carpetas
-    • node_modules: estan todos los ficheros de dependencia del proyecto.
-    • Carpeta cypress: librería para los test en el front
-    • Carpeta public: el fichero principal de la aplicación index.html y el icono favicon
-    • Carpeta src: donde se construye la aplicación
-    • Carpeta router: en el encontrarás la configuración donde asociamos url y componente al que se dirige.
-    • App.vue : dentro de la carpeta src. 
-    • main.js: dentro de src. Es el primer fichero que se ejecuta. Le indica a Vite cómo crear el proyecto Vue en función del archivo "App.vue"
-    • Carpeta src/assets: almacena todos los archivos multimedia, documentos, etc.
-    • Carpeta components: se guardan los componentes de la aplicación.
-    • Por fuera tenemos los archivos de configuración: .gitignore, babel.config.js, jsconfig.json, package.json. Vue.config.js, etc.
+Guia para entender la organizacion basica de un proyecto Vue y el papel de sus archivos principales.
 
+## Estructura de carpetas
 
+- `node_modules`: dependencias del proyecto.
+- `cypress`: configuracion y pruebas end-to-end en frontend.
+- `public`: recursos publicos como `index.html` y `favicon`.
+- `src`: codigo fuente principal de la aplicacion.
+- `src/router`: definicion de rutas (URL -> componente).
+- `src/assets`: imagenes, documentos y otros recursos.
+- `src/components`: componentes reutilizables.
+- `src/App.vue`: componente raiz de la app.
+- `src/main.js`: punto de entrada principal.
+- Archivos de configuracion en raiz: `.gitignore`, `package.json`, `jsconfig.json`, etc.
 
-1.- Entrada al proyecto: index.html
-	En el body se carga el script que carga el JS:
+## 1. Entrada al proyecto: `index.html`
 
+`index.html` es el archivo inicial que carga la aplicacion.
 
+- En el `body` se encuentra el contenedor donde Vue monta la app.
+- Tambien carga el script principal que apunta a `src/main.js`.
 
-	El fichero es el main.js dentro de la carpeta src.
-2.- El fichero main.js
-	El fichero main.js se encuentra dentro de src.
-	En el importamos el proyecto Vue, las hojas de estilo, el componente App.vue, router y Pinia (para poder compartir datos/estructuras en todo el proyecto).
-Creamos la aplicación con createApp(App).
-Luego hacemos “use” de Pinia y router.
-Finalmente se monta la aplicación en el elemento con id “app”.
+## 2. El fichero `main.js`
 
-3.- El fichero App.vue
-	El fichero App.vue se encuentra dentro de src.
-	Este fichero sigue la estructura SFC: <template>, <script> y <style>
+`main.js` arranca la aplicacion Vue.
 
+Funciones principales:
 
-3.1.- Template de App.vue
-	Contiene el html que se “pintará”. 
+- Importar Vue y el componente raiz `App.vue`.
+- Importar estilos globales.
+- Registrar plugins como Router y Pinia.
+- Montar la app en el elemento con id `app`.
+
+Ejemplo tipico:
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import { createPinia } from 'pinia'
+
+const app = createApp(App)
+app.use(createPinia())
+app.use(router)
+app.mount('#app')
+```
+
+## 3. El fichero `App.vue`
+
+`App.vue` es el componente raiz y sigue el formato SFC (Single File Component):
+
+- `<template>`: estructura visual.
+- `<script>` o `<script setup>`: logica del componente.
+- `<style>`: estilos del componente.
+
+### 3.1 Template de `App.vue`
+
+El template define el HTML renderizado por Vue.
+
+Ejemplo:
+
+```vue
 <template>
   <h1>You did it!</h1>
   <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
+    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a>
+    to read the documentation
   </p>
   <ButtonAutoCount />
 </template>
+```
 
-	En el código se observa los enlaces de dos imágenes y un componente:
-	<ButtonAutoCount />
-	Dicho componente se encuentra en la carpeta src/components y se importará en la sección <script> de App.vue.
+En este caso se usa el componente `<ButtonAutoCount />`, que vive en `src/components`.
 
-3.2.- Script de App.vue
-	En este caso se importa el componente ButtonAutoCount de src/components.
+### 3.2 Script de `App.vue`
+
+En el script se importan componentes y dependencias.
+
+```vue
 <script setup lang="ts">
-    import ButtonAutoCount from './components/ButtonAutoCount.vue'
+import ButtonAutoCount from './components/ButtonAutoCount.vue'
 </script>
-3.3.- Style de App.vue
-	Se define los estilos dentro de la etiqueta <style scoped>. En este caso no aplico.
-	La palabra "scoped" indica que los estilos definidos dentro de esa etiqueta solo afectarán al componente en el que se declaran. No se aplicarán globalmente a otros elementos de la aplicación, lo que evita problemas de colisión de estilos y facilita el mantenimiento de tu código.
-	Existe el fichero general de CSS dentro de la carpeta src que define los estilos genéricos.
-4.- El componente ButtonAutoCount.vue
-	El componente ButtonAutoCount.vue se encuentra dentro de src/components.
-	Por convención el nombre del componente empieza por mayúscula y con estilo Camell.
-	Sigue la estructura SFC.
-	Veamos cada parte del componente:
+```
 
+### 3.3 Style de `App.vue`
 
-4.1.- Script del componente
+- `<style scoped>` aplica estilos solo al componente actual.
+- Evita colisiones con estilos de otros componentes.
+- Los estilos globales suelen estar en archivos CSS de `src`.
+
+## 4. El componente `ButtonAutoCount.vue`
+
+Este componente tambien sigue la estructura SFC.
+
+### 4.1 Script del componente
+
+```vue
 <script setup lang="ts">
-   import { ref } from 'vue'
+import { ref } from 'vue'
 
-   const count = ref(0)
+const count = ref(0)
 </script>
+```
 
-<script setup> 
-	En Vue 3, la etiqueta <script setup> es una forma simplificada y optimizada de definir la lógica de un componente cuando se utiliza la Composition API. Se introdujo para hacer que el código sea más conciso y fácil de escribir. Es más eficiente en términos de rendimiento porque el código se preprocesa de manera más optimizada por Vue.
-	Otras mejoras:
-    • Código más breve y con menos repeticiones
-    • Capacidad para declarar props y eventos emitidos usando TypeScript puro
-    • Mejor rendimiento en tiempo de ejecución (la plantilla se compila en una función de renderizado en el mismo ámbito, sin un proxy intermedio)
-    • Mejor rendimiento de inferencia de tipos IDE (menos trabajo para que el servidor de lenguaje extraiga los tipos del código)
+Notas importantes:
 
-import {ref} from “vue”;
-	ref es una función que convierte un valor en una referencia reactiva. Cuando se utiliza ref, Vue detecta automáticamente los cambios en el valor y actualiza la interfaz de usuario en consecuencia.
-	¿Por qué se usa ref? Permite que Vue haga un seguimiento de los cambios y actualice la interfaz en tiempo real. Y es útil para definir variables reactivas dentro de la lógica de la Composition API, proporcionando una estructura más organizada para componentes complejos.
+- `<script setup>` simplifica y optimiza el uso de Composition API.
+- `ref` crea una variable reactiva.
+- `count` se inicializa en `0` y cambia en tiempo real en la UI.
 
-const count = ref(0);
-	Definimos la variable count como reactiva (ref) inicializada a 0.
+### 4.2 Template del componente
 
-4.2.- Template del componente
+```vue
 <template>
   <div>
-    <button data-test="btn-auto-count" @click="count++">Pulsado {{ count }} veces</button>
+    <button data-test="btn-auto-count" @click="count++">
+      Pulsado {{ count }} veces
+    </button>
   </div>
 </template>
+```
 
+Elementos clave:
 
+- `data-test="btn-auto-count"`: ayuda a localizar el boton en pruebas.
+- `@click="count++"`: escucha click y aumenta el contador.
+- `{{ count }}`: interpolacion para mostrar el valor reactivo.
 
+## Resumen
 
-
-<button data-test="btn-auto-count" @click="count++">Pulsado {{ count }} veces</button>
-
-	data-test="btn-auto-count"
-	Creamos un dataset para localizar mejor el botón para hacer test
-
-	type="button" 
-	Se define un botón:
-
-            @click="count++" 
-	Evento click de Vue (@click es la abreviatura de v-on:click)
-	V-on es un escuchador de eventos, véase más en la página oficial.
-	En el evento click incremenamos la variable count, definida en el script. También podemos 	llamar a funciones.
-
-	Pulsado {{ count }} veces</button>
-	Y en el texto del mismo botón visualizamos la variable count por medio de interpolación.
-
-Resumen
-	Los componentes son importados dentro del script donde se desee usar e incrustado en el Template integrándolo como si fuese un elemento html.
+La app Vue arranca en `index.html` y `main.js`, usa `App.vue` como raiz y se compone de componentes en `src/components`. Con `ref` y eventos como `@click`, la interfaz se actualiza de forma reactiva y sencilla.
