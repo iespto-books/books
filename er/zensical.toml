@@ -1,0 +1,11 @@
+[project]
+site_name = "Modelo Entidad Relacion"
+site_description = "Aprende a crear e interpretar diagramas haciendo uso del modelo Entidad Relacion (ER)."
+
+[project.theme]
+language = "es"
+
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
